@@ -2,15 +2,16 @@ const inEl = document.querySelector("input")
 let c = 0
 
 // event handler for the input element.
-function getData() {
-  console.log("fetched", c++)
+function getData(e) {
+  console.log("fetched", c++, e.target.value)
 }
 
 // debounce function
 function debounce(fn, delay) {
   let timer
 
-  return function (...args) {
+  return function (args) {
+    console.log(args)
     clearTimeout(timer)
 
     timer = setTimeout(() => {
@@ -20,4 +21,4 @@ function debounce(fn, delay) {
 }
 
 //event listener
-inEl.addEventListener("keyup", debounce(getData, 300))
+inEl.addEventListener("input", debounce(getData, 300))
